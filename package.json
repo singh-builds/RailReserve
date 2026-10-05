@@ -1,0 +1,15 @@
+{
+  "name": "railreserve-mongodb",
+  "version": "2.0.0",
+  "private": true,
+  "description": "RailReserve - Train Ticket Reservation (Node.js + Express + MongoDB)",
+  "scripts": {
+    "seed": "node seed.js",
+    "start": "node server.js",
+    "test:flow": "node test_flow.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "mongodb": "^6.9.0"
+  }
+}

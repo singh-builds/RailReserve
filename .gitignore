@@ -1,0 +1,4 @@
+node_modules/
+.env
+reservation-data.json
+old_oracle_version/
