@@ -1,54 +1,168 @@
-# RailReserve - Train Ticket Reservation (Node.js + Express + MongoDB)
+# RailReserve
 
-This is the same RailReserve project, now using **MongoDB** instead of Oracle.
-The web pages (`public/`) are unchanged. Only the database part was converted.
+A full-stack railway ticket reservation system that allows users to search train services, register passengers, calculate fares, book tickets, generate PNRs, check ticket status, cancel tickets, and manage waitlisted passengers.
 
-## What you need
-1. **Node.js** (version 18 or newer)
-2. **MongoDB Community Server** - download from mongodb.com. In the installer keep
-   "Install MongoDB as a Service" and "Install MongoDB Compass" ticked.
-   Compass is the free app where you can SEE your data (very useful for showing the working).
-   (No MongoDB on your PC? Use a free MongoDB Atlas cluster and set `MONGODB_URI`, see below.)
+## About the Project
 
-## Run it (3 steps)
-```
+RailReserve is a web-based railway reservation application designed to simplify the process of train ticket booking and management.
+
+The application provides a complete reservation workflow, including user authentication, train schedule search, passenger registration, fare calculation, confirmed booking, waitlist management, PNR tracking, ticket cancellation, and automatic waitlist promotion.
+
+The project uses a Node.js and Express.js backend with MongoDB for data storage.
+
+## Tech Stack
+
+### Frontend
+- HTML5
+- CSS3
+- JavaScript
+
+### Backend
+- Node.js
+- Express.js
+
+### Database
+- MongoDB
+- MongoDB Node.js Driver
+
+### Development Tools
+- Visual Studio Code
+- MongoDB Compass
+- Git
+- GitHub
+
+## Key Features
+
+- User Registration and Login
+- Secure Password Hashing
+- Train Schedule Search
+- Passenger Registration
+- Fare Calculation
+- Confirmed Ticket Booking
+- Automatic Waitlist Management
+- PNR Generation
+- PNR Status Checking
+- Ticket Cancellation
+- Automatic Waitlist Promotion
+- Seat Availability Management
+- Duplicate Data Validation
+- MongoDB Data Storage
+- Backend API Integration
+
+## System Architecture
+
+```text
+                   RAILRESERVE
+                       |
+                       v
+                Web Browser
+                       |
+            HTML / CSS / JavaScript
+                       |
+                 HTTP API Calls
+                       |
+                       v
+              Node.js + Express.js
+                       |
+              MongoDB Node.js Driver
+                       |
+                       v
+                 MongoDB Server
+                localhost:27017
+                       |
+                       v
+                railreserve Database
+                       |
+          +------------+-------------+
+          |            |             |
+          v            v             v
+        users      passengers      trains
+                                      |
+                                      v
+                               train_services
+                                      |
+                                      v
+                               class_inventory
+                                      |
+                                      v
+                                   tickets
+
+Database
+
+MongoDB Connection:
+
+mongodb://localhost:27017
+
+Database Name:
+
+railreserve
+
+Main Collections
+users
+passengers
+trains
+train_services
+class_inventory
+tickets
+counters
+How to Run
+Requirements
+Node.js 18+
+MongoDB Community Server
+Install Dependencies
 npm install
-npm run seed      # creates the collections and adds sample trains (run once; running again resets the data)
-npm start         # then open http://localhost:3000
-```
-Sign up, sign in, register a passenger, book a ticket, search the PNR, cancel the ticket.
+Initialize Database
+npm run seed
+Start Application
+npm start
 
-## Show the working
-- Open **MongoDB Compass**, connect to `mongodb://localhost:27017`, open database **railreserve**.
-  Keep it open while you use the website and press the refresh button in Compass after each action.
-- Run the automatic demo (open a second terminal while `npm start` is running):
-  ```
-  npm run test:flow
-  ```
-  It prints every step with PASS/FAIL (sign up, booking, waitlist, cancel, waitlist promotion).
-- Run the queries in `demo_queries.js` inside **mongosh** (or the MONGOSH tab at the bottom of Compass).
-- Read `MONGODB_CONVERSION.md` - it explains how every SQL table and PL/SQL part became MongoDB.
+Open:
 
-## Settings (optional)
-| Name | Default |
-|------|---------|
-| `MONGODB_URI` | `mongodb://localhost:27017` |
-| `DB_NAME` | `railreserve` |
-| `PORT` | `3000` |
+http://localhost:3000
+Testing
 
-Windows PowerShell example: `$env:MONGODB_URI="mongodb+srv://user:pass@cluster.mongodb.net"; npm start`
+The project includes an automated test flow covering signup, login, train schedules, fare calculation, passenger registration, booking, waitlist, PNR, cancellation, and waitlist promotion.
 
-## Files
-| File | Purpose |
-|------|---------|
-| `server.js` | Express server + all API routes (MongoDB code, replaces PL/SQL) |
-| `db.js` | Connection, indexes (UNIQUE rules) and validators (CHECK rules) |
-| `seed.js` | Sample trains, journeys and seats |
-| `test_flow.js` | Automatic demo of the full booking story |
-| `demo_queries.js` | Queries to show in mongosh / Compass |
-| `old_oracle_version/` | The original Oracle files (server, SQL, README, screenshots), kept for comparison |
-| `public/` | Front-end (unchanged) |
+Test Result: 24 passed, 0 failed
 
-## API (unchanged)
-POST `/api/signup`, POST `/api/signin`, GET `/api/services`, POST `/api/passengers`,
-GET `/api/fare`, POST `/api/bookings`, GET `/api/tickets/:pnr`, POST `/api/cancellations`
+Run the test with:
+
+npm run test:flow
+Project Structure
+RailReserve/
+├── public/
+├── db.js
+├── server.js
+├── seed.js
+├── test_flow.js
+├── demo_queries.js
+├── package.json
+├── package-lock.json
+├── .env.example
+├── .gitignore
+└── README.md
+GitHub
+
+https://github.com/singh-builds/RailReserve
+
+Author
+
+Aditya Rajesh Singh
+
+GitHub: https://github.com/singh-builds
+
+
+### This is enough
+
+It tells someone:
+
+**What the project is → what you used → what it does → how MongoDB connects → how to run it → testing result → GitHub link.**
+
+You don't need the huge README I gave earlier.
+
+After pasting this into `README.md`, save it and run:
+
+```cmd
+git add README.md
+git commit -m "Improve README"
+git push
